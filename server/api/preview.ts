@@ -28,7 +28,7 @@ export default defineEventHandler(async (event) => {
 
   const { entryId, locale } = getQuery(event);
 
-  if (!config.CF_IS_ALLOW_PREVIEW || !entryId) {
+  if (!entryId) {
     return "Resource not found";
   }
 
