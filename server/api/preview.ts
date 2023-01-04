@@ -35,8 +35,11 @@ export default defineEventHandler(async (event) => {
   // @todo: should this import factory / $entry ???
 
   const fetchedEntry = await contentfulClient
-    .getEntry(entryId, { include: 10, locale })
-    .then((response) => response)
+    .getEntry(entryId, {
+      include: 10,
+      locale,
+    })
+
     .catch((error) => {
       return error;
     });
