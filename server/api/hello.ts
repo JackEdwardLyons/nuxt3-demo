@@ -1,9 +1,21 @@
 export default defineEventHandler(async (event) => {
-  const id = event.context.params.id;
+  const indexQuery = event.context.query.index;
 
-  const data = await fetch("https://cat-fact.herokuapp.com/facts");
+  console.log({ indexQuery });
 
-  const cats = data.json();
+  return indexQuery;
 
-  return cats;
+  // const data = await fetch("https://cat-fact.herokuapp.com/facts");
+
+  // const cats = await data.json();
+
+  // const index = Number(indexQuery);
+
+  // console.log({ indexQuery });
+
+  // if (isNaN(index)) {
+  //   return cats;
+  // }
+
+  // return cats[index];
 });

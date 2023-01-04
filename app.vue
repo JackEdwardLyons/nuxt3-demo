@@ -2,13 +2,17 @@
   <div>
     <pre>error:  {{ error }}</pre>
     <pre>pending:  {{ pending }}</pre>
-    <pre>refresh:  {{ refresh }}</pre>
+
     <pre>{{ data }}</pre>
     <NuxtWelcome />
   </div>
 </template>
 <script setup>
-const { data, pending, error, refresh } = useAsyncData("hello api", () =>
-  $fetch("/api/hello")
-);
+const route = useRoute();
+
+const { data, pending, error } = await useAsyncData("hello api", (context) => {
+  const index = route.query.index;
+
+  return $fetch("/api/hello/" + index);
+});
 </script>
