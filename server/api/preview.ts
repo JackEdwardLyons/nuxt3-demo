@@ -19,7 +19,7 @@ export default defineEventHandler(async (event) => {
 
     retryLimit: 10,
 
-    environment: config.CF_ENV || "master",
+    environment: "master",
 
     host: config.CF_IS_ALLOW_PREVIEW
       ? "preview.contentful.com"
@@ -33,6 +33,8 @@ export default defineEventHandler(async (event) => {
   }
 
   // @todo: should this import factory / $entry ???
+
+  return contentfulClient;
 
   const fetchedEntry = await contentfulClient
     .getEntry(entryId, {
