@@ -38,14 +38,16 @@ export default defineEventHandler(async (event) => {
     .getEntry(entryId, { include: 10, locale })
     .then((response) => response)
     .catch((error) => {
-      return 'Invalid entryId provided"';
+      return error;
     });
 
   console.log({ fetchedEntry });
 
-  try {
-    return decycle(fetchedEntry.toPlainObject());
-  } catch (error) {
-    return `Internal Server Error. Entry ID: ${entryId}. ${error.toString()}`;
-  }
+  return fetchedEntry;
+
+  // try {
+  //   return decycle(fetchedEntry.toPlainObject());
+  // } catch (error) {
+  //   return `Internal Server Error. Entry ID: ${entryId}. ${error.toString()}`;
+  // }
 });
