@@ -34,21 +34,32 @@ export default defineEventHandler(async (event) => {
 
   // @todo: should this import factory / $entry ???
 
-  return contentfulClient;
-
   const fetchedEntry = await contentfulClient
-    .getEntry(entryId, {
-      include: 10,
-      locale,
-    })
+    .getEntry(entryId, { include: 10, locale })
+    .catch((error) => error);
 
-    .catch((error) => {
-      return error;
-    });
+  return {
+    fetchedEntry,
+    contentfulClient,
+    contentful,
+    vars: {
+      space: config.CF_SPACE,
 
-  console.log({ fetchedEntry });
+      accessToken: config.CF_IS_ALLOW_PREVIEW
+        ? config.CF_CPA_KEY
+        : config.CF_CDA_KEY,
 
-  return fetchedEntry;
+      timeout: 60000,
+
+      retryLimit: 10,
+
+      environment: "master",
+
+      host: config.CF_IS_ALLOW_PREVIEW
+        ? "preview.contentful.com"
+        : "cdn.contentful.com",
+    },
+  };
 
   // try {
   //   return decycle(fetchedEntry.toPlainObject());
