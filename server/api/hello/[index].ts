@@ -7,8 +7,6 @@ export default defineEventHandler(async (event) => {
 
   const index = Number(indexQuery);
 
-  console.log({ indexQuery });
-
   if (isNaN(index)) {
     return cats;
   }

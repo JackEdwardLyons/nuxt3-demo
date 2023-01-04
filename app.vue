@@ -1,18 +1,10 @@
 <template>
   <div>
-    <pre>error:  {{ error }}</pre>
-    <pre>pending:  {{ pending }}</pre>
-
-    <pre>{{ data }}</pre>
-    <NuxtWelcome />
+    <NuxtPage />
   </div>
 </template>
-<script setup>
-const route = useRoute();
-
-const { data, pending, error } = await useAsyncData("hello api", (context) => {
-  const index = route.query.index;
-
-  return $fetch("/api/hello/" + index);
-});
+<script>
+export default {
+  setup() {},
+};
 </script>

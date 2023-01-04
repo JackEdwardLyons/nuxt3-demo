@@ -9,5 +9,9 @@
   },
   "devDependencies": {
     "nuxt": "3.0.0"
+  },
+  "dependencies": {
+    "contentful": "^9.2.14",
+    "cycle": "^1.0.3"
   }
 }
